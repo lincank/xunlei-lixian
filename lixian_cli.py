@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/bin/python2
 
 from lixian import XunleiClient, encypt_password
 from lixian_cli_parser import *

@@ -24,7 +24,7 @@ def asyn_download(client, download_url, filename, resuming=False):
 
 def wget_download(client, download_url, filename, resuming=False):
 	gdriveid = str(client.get_gdriveid())
-	wget_opts = ['wget', '--header=Cookie: gdriveid='+gdriveid, download_url, '-O', filename]
+	wget_opts = ['/opt/bin/wget', '--header=Cookie: gdriveid='+gdriveid, download_url, '-O', filename]
 	if resuming:
 		wget_opts.append('-c')
 	wget_opts.extend(get_config('wget-opts', '').split())
@@ -48,7 +48,7 @@ def aria2_download(client, download_url, path, resuming=False):
 	gdriveid = str(client.get_gdriveid())
 	dir = os.path.dirname(path)
 	filename = os.path.basename(path)
-	aria2_opts = ['aria2c', '--header=Cookie: gdriveid='+gdriveid, download_url, '--out', filename, '--file-allocation=none']
+	aria2_opts = ['/opt/bin/aria2c', '--header=Cookie: gdriveid='+gdriveid, download_url, '--out', filename, '--file-allocation=none']
 	if dir:
 		aria2_opts.extend(('--dir', dir))
 	if resuming:
